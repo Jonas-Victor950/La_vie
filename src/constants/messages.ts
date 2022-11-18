@@ -4,6 +4,10 @@ const MESSAGE = {
         PSICOLOGO_NOT_FOUND: "✖️ Psicologo não encontrado!",
         NONE_PSICOLOGO_UNTIL_NOW: "⚠️ Nenhum psicólogo até o momento."
     },
+    PACIENTES: {
+        PACIENTE_NOT_FOUND: "✖️ Paciente não encontrado!",
+        NONE_PACIENTE_UNTIL_NOW: "⚠️ Nenhum paciente até o momento."
+    },
     ERROR_CATCH: "✖️ Ops, deu ruim!",
     NOT_VALID_ID: "✖️ Eita! Informe um ID válido!",
     CONSTRAINT: "Existe relacionamento com esse id, não é possivel deletar",
@@ -13,11 +17,17 @@ const MESSAGE = {
   },
   SUCCESS: {
     PSICOLOGOS: {
-        PSICOLOGOS_FIND: "✔️ Psicólogos encontrados com sucesso!",
+        PSICOLOGOS_FIND: "✔️ Psicólogo(s) encontrados com sucesso!",
         PSICOLOGOS_DELETE: "✔️ Psicólogo excluído com sucesso!",
         PSICOLOGOS_UPDATE:"✔️ Psicólgo atualizado com sucesso!",
         PSICOLOGOS_CREATE: "✔️ Psicologo criado com sucesso!"
-    }
+    },
+    PACIENTES: {
+      PACIENTES_FIND: "✔️ Paciente(s) encontrados com sucesso!",
+      PACIENTES_DELETE: "✔️ Paciente excluído com sucesso!",
+      PACIENTES_UPDATE:"✔️ Paciente atualizado com sucesso!",
+      PACIENTES_CREATE: "✔️ Paciente criado com sucesso!"
+  }
   }
 };
 

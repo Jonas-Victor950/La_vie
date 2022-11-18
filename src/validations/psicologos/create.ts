@@ -1,6 +1,6 @@
 import { validate, Joi} from 'express-validation';
 
-const validateCreate = validate({
+const validateCreatePsicologo = validate({
     body: Joi.object({
         nome: Joi.string().required(),
         email: Joi.string().email().required(),
@@ -9,4 +9,4 @@ const validateCreate = validate({
     })
 })
 
-export default validateCreate
+export default validateCreatePsicologo

@@ -3,7 +3,7 @@ import { Request, Response, NextFunction} from "express";
 import { PsicologoInterface } from "../interfaces/PsicologoInterface";
 import PsicologoService from "../services/PsicologoService";
 import Logger from "../database/logger";
-import bcrypty from "bcryptjs"
+import bcrypty from "bcryptjs";
 
 class PsicologoController {
     static async allPsicologos (req: Request, res: Response) {
