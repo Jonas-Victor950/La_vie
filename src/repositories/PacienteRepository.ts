@@ -1,5 +1,5 @@
 import { PacienteInterface } from "../interfaces/PacienteInterface";
-import Paciente from "../models/Paciente";
+import { Paciente } from "../models/Index";
 
 class PacienteRepository {
     getPacientes(): Promise<Array<any>> {

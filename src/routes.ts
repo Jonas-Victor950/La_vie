@@ -3,12 +3,19 @@ import express from "express";
 // Imports Controllers
 import PacienteController from "./controllers/PacientesController";
 import PsicologoController from "./controllers/PsicologoController";
+import AtendimentoController from "./controllers/AtendimentosController";
+import AuthController from "./controllers/AuthController";
+
+// Imports Middlewares
+import auth from "./middlewares/auth";
 
 // Imports Validations
 import validateCreatePsicologo from "./validations/psicologos/create";
 import validateUpdatePsicologo from "./validations/psicologos/update";
 import validateCreatePaciente from "./validations/pacientes/create";
 import validateUpdatePaciente from "./validations/pacientes/update";
+import validateCreateAtendimento from "./validations/atendimentos/create";
+import ValidateLogin from "./validations/auth/login";
 
 const router = express.Router();
 
@@ -27,5 +34,13 @@ router.post("/pacientes", validateCreatePaciente, PacienteController.create)
 router.put("/pacientes/:id", validateUpdatePaciente, PacienteController.update)
 router.delete("/pacientes/:id", PacienteController.delete)
 // End of Routes Pacientes
+
+router.post("/login", ValidateLogin, AuthController.login)
+
+// Start of Routes Atendimentos
+router.get("/atendimentos", AtendimentoController.allAtendimentos)
+router.get("/atendimentos/:id", AtendimentoController.getOne)
+router.post("/atendimentos", validateCreateAtendimento, auth, AtendimentoController.create)
+// End of Routes Atendimentos
 
 export default router

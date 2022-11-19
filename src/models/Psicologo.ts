@@ -1,7 +1,12 @@
 import { db } from "../database/database";
 import { Model, DataTypes, Sequelize} from "sequelize";
 
-export default class Psicologo extends Model {}
+export default class Psicologo extends Model {
+    senha!: string;
+    psicologo_id: any;
+    nome: any;
+    email: any;
+}
 Psicologo.init(
     {
         psicologo_id: {

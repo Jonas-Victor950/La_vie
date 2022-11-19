@@ -1,5 +1,5 @@
 import { PsicologoInterface } from "../interfaces/PsicologoInterface";
-import Psicologo from "../models/Psicologo";
+import {Psicologo} from "../models/Index";
 
 class PsicologoRepository {
     getPsicologos(): Promise<Array<any>> {

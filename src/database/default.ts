@@ -4,6 +4,7 @@ const authDB = {
     database: process.env.DB_DATABASE as string,
     user: process.env.DB_USERNAME as string,
     pass: process.env.DB_PASSWORD as string,
+    key: process.env.KEY as string
 };
 
 export default authDB;
