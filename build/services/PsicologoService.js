@@ -21,4 +21,4 @@ class PsicologoService {
         return PsicologoRepository_1.default.deletePsicologo(psicologoId);
     }
 }
-exports.default = new PsicologoService;
+exports.default = new PsicologoService();

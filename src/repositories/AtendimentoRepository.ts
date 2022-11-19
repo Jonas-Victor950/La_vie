@@ -19,13 +19,13 @@ class AtendimentoRepository {
     });
   }
 
-  createAtendimento(dados: AtendimentoInterface ): Promise<any> {
+  createAtendimento(dados: AtendimentoInterface): Promise<any> {
     return Atendimento.create({
-        psicologo_id: dados.psicologo_id,
-        paciente_id: dados.paciente_id,
-        data_atendimento: dados.data_atendimento,
-        observacoes: dados.observacoes,
-    })
+      psicologo_id: dados.psicologo_id,
+      paciente_id: dados.paciente_id,
+      data_atendimento: dados.data_atendimento,
+      observacoes: dados.observacoes,
+    });
   }
 }
 

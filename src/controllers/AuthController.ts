@@ -36,7 +36,7 @@ const AuthController = {
 
       return res.json(token);
     } catch (error) {
-        return res.status(200);
+      return res.status(200);
     }
   },
 };

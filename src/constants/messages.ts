@@ -35,7 +35,7 @@ const MESSAGE = {
     ATENDIMENTOS: {
       ATENDIMENTOS_CREATE: "✔️ Atendimento criado com sucesso!",
       ATENDIMENTOS_FIND: "✔️ Atendimento(s) encontrados com sucesso!",
-    }
+    },
   },
 };
 

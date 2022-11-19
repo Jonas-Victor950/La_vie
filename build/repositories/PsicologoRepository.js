@@ -1,45 +1,42 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Psicologo_1 = __importDefault(require("../models/Psicologo"));
+const Index_1 = require("../models/Index");
 class PsicologoRepository {
     getPsicologos() {
-        return Psicologo_1.default.findAll();
+        return Index_1.Psicologo.findAll();
     }
     getOnePsicologo(psicologoId) {
-        return Psicologo_1.default.findOne({
+        return Index_1.Psicologo.findOne({
             where: {
-                psicologo_id: psicologoId
-            }
+                psicologo_id: psicologoId,
+            },
         });
     }
     createPsicologo(dados) {
-        return Psicologo_1.default.create({
+        return Index_1.Psicologo.create({
             nome: dados.nome,
             email: dados.email,
             senha: dados.senha,
-            apresentacao: dados.apresentacao
+            apresentacao: dados.apresentacao,
         });
     }
     updatePsicologo(psicologoId, dados) {
-        return Psicologo_1.default.update({
+        return Index_1.Psicologo.update({
             nome: dados.nome,
             email: dados.email,
             senha: dados.senha,
-            apresentacao: dados.apresentacao
+            apresentacao: dados.apresentacao,
         }, {
             where: {
-                psicologo_id: psicologoId
-            }
+                psicologo_id: psicologoId,
+            },
         });
     }
     deletePsicologo(psicologoId) {
-        return Psicologo_1.default.destroy({
+        return Index_1.Psicologo.destroy({
             where: {
-                psicologo_id: psicologoId
-            }
+                psicologo_id: psicologoId,
+            },
         });
     }
 }

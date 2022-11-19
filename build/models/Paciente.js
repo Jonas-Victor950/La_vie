@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database/database");
 const sequelize_1 = require("sequelize");
-class Psicologo extends sequelize_1.Model {
+class Paciente extends sequelize_1.Model {
 }
-exports.default = Psicologo;
-Psicologo.init({
-    psicologo_id: {
+exports.default = Paciente;
+Paciente.init({
+    paciente_id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -17,14 +17,11 @@ Psicologo.init({
     email: {
         type: sequelize_1.DataTypes.STRING,
     },
-    senha: {
-        type: sequelize_1.DataTypes.STRING,
-    },
-    apresentacao: {
-        type: sequelize_1.DataTypes.STRING,
+    idade: {
+        type: sequelize_1.DataTypes.DATE,
     },
 }, {
-    modelName: "psicologos",
+    modelName: "pacientes",
     freezeTableName: true,
     createdAt: false,
     updatedAt: false,

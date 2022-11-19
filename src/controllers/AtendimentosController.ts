@@ -13,21 +13,17 @@ class AtendimentoController {
 
       if (atendimentos.length <= 0) {
         Logger.info(MESSAGE.ERROR.ATENDIMENTOS.NONE_ATENDIMENTO_UNTIL_NOW);
-        return res
-          .status(200)
-          .json({
-            success: false,
-            msg: MESSAGE.ERROR.ATENDIMENTOS.NONE_ATENDIMENTO_UNTIL_NOW,
-          });
+        return res.status(200).json({
+          success: false,
+          msg: MESSAGE.ERROR.ATENDIMENTOS.NONE_ATENDIMENTO_UNTIL_NOW,
+        });
       } else {
         Logger.info(MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_FIND);
-        return res
-          .status(200)
-          .json({
-            success: true,
-            msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_FIND,
-            data: atendimentos,
-          });
+        return res.status(200).json({
+          success: true,
+          msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_FIND,
+          data: atendimentos,
+        });
       }
     } catch (error: any) {
       Logger.error(`Pane no sistema: ${error.message}`);
@@ -53,12 +49,10 @@ class AtendimentoController {
 
       if (!atendimento) {
         Logger.error(MESSAGE.ERROR.ATENDIMENTOS.ATENDIMENTO_NOT_FOUND);
-        return res
-          .status(500)
-          .json({
-            success: false,
-            msg: MESSAGE.ERROR.ATENDIMENTOS.ATENDIMENTO_NOT_FOUND,
-          });
+        return res.status(500).json({
+          success: false,
+          msg: MESSAGE.ERROR.ATENDIMENTOS.ATENDIMENTO_NOT_FOUND,
+        });
       } else {
         Logger.info("Mandando o atendimento que foi pedido!");
         return res.json({ success: true, data: atendimento });
@@ -81,19 +75,24 @@ class AtendimentoController {
       observacoes: observacoes,
     };
     try {
-        const atendimento = await AtendimentoRepository.createAtendimento(atendimentoObj)
+      const atendimento = await AtendimentoRepository.createAtendimento(
+        atendimentoObj
+      );
 
-        Logger.info(MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE);
-            return res
-                .status(201)
-                .json({ success: true, msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE, data: atendimento });
-
-        } catch (error) {
-            Logger.error(error)
-            return res
-                .status(500)
-                .json({ success: false, msg: MESSAGE.ERROR.ERROR_CATCH}); 
-        }
+      Logger.info(MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE);
+      return res
+        .status(201)
+        .json({
+          success: true,
+          msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE,
+          data: atendimento,
+        });
+    } catch (error) {
+      Logger.error(error);
+      return res
+        .status(500)
+        .json({ success: false, msg: MESSAGE.ERROR.ERROR_CATCH });
+    }
   }
 }
 

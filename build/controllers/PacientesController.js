@@ -13,31 +13,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const messages_1 = __importDefault(require("../constants/messages"));
-const PsicologoService_1 = __importDefault(require("../services/PsicologoService"));
+const PacienteService_1 = __importDefault(require("../services/PacienteService"));
 const logger_1 = __importDefault(require("../database/logger"));
-const bcryptjs_1 = __importDefault(require("bcryptjs"));
-class PsicologoController {
-    static allPsicologos(req, res) {
+class PacienteController {
+    static allPacientes(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const psicologos = yield PsicologoService_1.default.getPsicologos();
-                if (psicologos.length <= 0) {
-                    logger_1.default.info(messages_1.default.ERROR.PSICOLOGOS.NONE_PSICOLOGO_UNTIL_NOW);
+                const pacientes = yield PacienteService_1.default.getPacientes();
+                if (pacientes.length <= 0) {
+                    logger_1.default.info(messages_1.default.ERROR.PACIENTES.NONE_PACIENTE_UNTIL_NOW);
                     return res
                         .status(200)
                         .json({
                         success: false,
-                        msg: messages_1.default.ERROR.PSICOLOGOS.NONE_PSICOLOGO_UNTIL_NOW,
+                        msg: messages_1.default.ERROR.PACIENTES.NONE_PACIENTE_UNTIL_NOW,
                     });
                 }
                 else {
-                    logger_1.default.info(messages_1.default.SUCCESS.PSICOLOGOS.PSICOLOGOS_FIND);
+                    logger_1.default.info(messages_1.default.SUCCESS.PACIENTES.PACIENTES_FIND);
                     return res
                         .status(200)
                         .json({
                         success: true,
-                        msg: messages_1.default.SUCCESS.PSICOLOGOS.PSICOLOGOS_FIND,
-                        data: psicologos,
+                        msg: messages_1.default.SUCCESS.PACIENTES.PACIENTES_FIND,
+                        data: pacientes,
                     });
                 }
             }
@@ -58,20 +57,20 @@ class PsicologoController {
                         .status(500)
                         .json({ success: false, msg: messages_1.default.ERROR.NOT_VALID_ID });
                 }
-                const psicologoId = parseInt(req.params.id);
-                const psicologo = yield PsicologoService_1.default.getOnePsicologo(psicologoId);
-                if (!psicologo) {
-                    logger_1.default.error(messages_1.default.ERROR.PSICOLOGOS.PSICOLOGO_NOT_FOUND);
+                const pacienteId = parseInt(req.params.id);
+                const paciente = yield PacienteService_1.default.getOnePaciente(pacienteId);
+                if (!paciente) {
+                    logger_1.default.error(messages_1.default.ERROR.PACIENTES.PACIENTE_NOT_FOUND);
                     return res
                         .status(500)
                         .json({
                         success: false,
-                        msg: messages_1.default.ERROR.PSICOLOGOS.PSICOLOGO_NOT_FOUND,
+                        msg: messages_1.default.ERROR.PACIENTES.PACIENTE_NOT_FOUND,
                     });
                 }
                 else {
-                    logger_1.default.info("Mandando o psicologo que foi pedido!");
-                    return res.json({ success: true, data: psicologo });
+                    logger_1.default.info("Mandando o paciente que foi pedido!");
+                    return res.json({ success: true, data: paciente });
                 }
             }
             catch (error) {
@@ -84,23 +83,21 @@ class PsicologoController {
     }
     static create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nome, email, senha, apresentacao } = req.body;
-            const newSenha = bcryptjs_1.default.hashSync(senha, 10);
-            const psicologoObj = {
+            const { nome, email, idade } = req.body;
+            const pacienteObj = {
                 nome: nome,
                 email: email,
-                senha: newSenha,
-                apresentacao: apresentacao,
+                idade: idade,
             };
             try {
-                const psicologo = yield PsicologoService_1.default.createPsicologo(psicologoObj);
-                logger_1.default.info(messages_1.default.SUCCESS.PSICOLOGOS.PSICOLOGOS_CREATE);
+                const paciente = yield PacienteService_1.default.createPaciente(pacienteObj);
+                logger_1.default.info(messages_1.default.SUCCESS.PACIENTES.PACIENTES_CREATE);
                 return res
                     .status(200)
                     .json({
                     success: true,
-                    msg: messages_1.default.SUCCESS.PSICOLOGOS.PSICOLOGOS_CREATE,
-                    data: psicologo,
+                    msg: messages_1.default.SUCCESS.PACIENTES.PACIENTES_CREATE,
+                    data: paciente,
                 });
             }
             catch (error) {
@@ -113,13 +110,11 @@ class PsicologoController {
     }
     static update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nome, email, senha, apresentacao } = req.body;
-            const newSenha = bcryptjs_1.default.hashSync(senha, 10);
-            const psicologoObj = {
+            const { nome, email, idade } = req.body;
+            const pacienteObj = {
                 nome: nome,
                 email: email,
-                senha: newSenha,
-                apresentacao: apresentacao,
+                idade: idade,
             };
             try {
                 if (!req.params.id || isNaN(parseInt(req.params.id))) {
@@ -128,26 +123,26 @@ class PsicologoController {
                         .status(500)
                         .json({ success: false, msg: messages_1.default.ERROR.NOT_VALID_ID });
                 }
-                const psicologoId = parseInt(req.params.id);
-                const psicologo = yield PsicologoService_1.default.getOnePsicologo(psicologoId);
-                if (!psicologo) {
-                    logger_1.default.error(messages_1.default.ERROR.PSICOLOGOS.PSICOLOGO_NOT_FOUND);
+                const pacienteId = parseInt(req.params.id);
+                const paciente = yield PacienteService_1.default.getOnePaciente(pacienteId);
+                if (!paciente) {
+                    logger_1.default.error(messages_1.default.ERROR.PACIENTES.PACIENTE_NOT_FOUND);
                     return res
                         .status(500)
                         .json({
                         success: false,
-                        msg: messages_1.default.ERROR.PSICOLOGOS.PSICOLOGO_NOT_FOUND,
+                        msg: messages_1.default.ERROR.PACIENTES.PACIENTE_NOT_FOUND,
                     });
                 }
                 else {
-                    const updatedPsicologo = yield PsicologoService_1.default.updatePsicologo(psicologoId, psicologoObj);
-                    logger_1.default.info(messages_1.default.SUCCESS.PSICOLOGOS.PSICOLOGOS_UPDATE);
+                    const updatedPaciente = yield PacienteService_1.default.updatePaciente(pacienteId, pacienteObj);
+                    logger_1.default.info(messages_1.default.SUCCESS.PACIENTES.PACIENTES_UPDATE);
                     return res
                         .status(200)
                         .json({
                         success: true,
-                        msg: messages_1.default.SUCCESS.PSICOLOGOS.PSICOLOGOS_UPDATE,
-                        data: psicologoObj,
+                        msg: messages_1.default.SUCCESS.PACIENTES.PACIENTES_UPDATE,
+                        data: pacienteObj,
                     });
                 }
             }
@@ -168,25 +163,25 @@ class PsicologoController {
                         .status(500)
                         .json({ success: false, msg: messages_1.default.ERROR.NOT_VALID_ID });
                 }
-                const psicologoId = parseInt(req.params.id);
-                const psicologo = yield PsicologoService_1.default.getOnePsicologo(psicologoId);
-                if (!psicologo) {
-                    logger_1.default.error(messages_1.default.ERROR.PSICOLOGOS.PSICOLOGO_NOT_FOUND);
+                const pacienteId = parseInt(req.params.id);
+                const paciente = yield PacienteService_1.default.getOnePaciente(pacienteId);
+                if (!paciente) {
+                    logger_1.default.error(messages_1.default.ERROR.PACIENTES.PACIENTE_NOT_FOUND);
                     return res
                         .status(500)
                         .json({
                         success: false,
-                        msg: messages_1.default.ERROR.PSICOLOGOS.PSICOLOGO_NOT_FOUND,
+                        msg: messages_1.default.ERROR.PACIENTES.PACIENTE_NOT_FOUND,
                     });
                 }
                 else {
-                    yield PsicologoService_1.default.deletePsicologo(psicologoId);
-                    logger_1.default.info(messages_1.default.SUCCESS.PSICOLOGOS.PSICOLOGOS_DELETE);
+                    yield PacienteService_1.default.deletePaciente(pacienteId);
+                    logger_1.default.info(messages_1.default.SUCCESS.PACIENTES.PACIENTES_DELETE);
                     return res
                         .status(200)
                         .json({
                         success: true,
-                        msg: messages_1.default.SUCCESS.PSICOLOGOS.PSICOLOGOS_DELETE,
+                        msg: messages_1.default.SUCCESS.PACIENTES.PACIENTES_DELETE,
                     });
                 }
             }
@@ -199,4 +194,4 @@ class PsicologoController {
         });
     }
 }
-exports.default = PsicologoController;
+exports.default = PacienteController;

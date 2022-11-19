@@ -33,13 +33,12 @@ function main() {
                 .then(() => {
                 logger_1.default.info(`😄 Conectado com sucesso ao banco de dados!`);
             })
-                .catch(err => {
+                .catch((err) => {
                 logger_1.default.error(`😕 Falha ao conectar ao banco de dados.`);
             });
         }));
     });
 }
-;
 main().catch((error) => {
     logger_1.default.error("🥵 Erro!");
     logger_1.default.error(error);
