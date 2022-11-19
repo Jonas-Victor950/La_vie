@@ -5,6 +5,7 @@ import PacienteController from "./controllers/PacientesController";
 import PsicologoController from "./controllers/PsicologoController";
 import AtendimentoController from "./controllers/AtendimentosController";
 import AuthController from "./controllers/AuthController";
+import DashboardController from "./controllers/DashboardController";
 
 // Imports Middlewares
 import auth from "./middlewares/auth";
@@ -52,5 +53,18 @@ router.post(
   AtendimentoController.create
 );
 // End of Routes Atendimentos
+
+// Start of Routes Dashboard
+router.get("/dashboard/numero-pacientes", DashboardController.countPacientes);
+router.get("/dashboard/numero-psicologos", DashboardController.countPsicologos);
+router.get(
+  "/dashboard/numero-atendimentos",
+  DashboardController.countAtendimentos
+);
+router.get(
+  "/dashboard/media-atendimentos",
+  DashboardController.averageAtendimentos
+);
+// End of Routes Dashboard
 
 export default router;

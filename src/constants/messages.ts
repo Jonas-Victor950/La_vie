@@ -36,6 +36,12 @@ const MESSAGE = {
       ATENDIMENTOS_CREATE: "✔️ Atendimento criado com sucesso!",
       ATENDIMENTOS_FIND: "✔️ Atendimento(s) encontrados com sucesso!",
     },
+    SERVER: "Servidor rodando na porta 3000",
+    DB: "Banco dados conectado!",
+    QTDPACIENTES: "Número de pacientes: ",
+    QTDPSICOLOGOS: "Número de psicólogos: ",
+    QTDATENDIMENTOS: "Número de atendimentos: ",
+    MEDIA: "Nossa média de atendimentos por psicologos é: ",
   },
 };
 

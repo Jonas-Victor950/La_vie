@@ -80,13 +80,11 @@ class AtendimentoController {
       );
 
       Logger.info(MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE);
-      return res
-        .status(201)
-        .json({
-          success: true,
-          msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE,
-          data: atendimento,
-        });
+      return res.status(201).json({
+        success: true,
+        msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE,
+        data: atendimento,
+      });
     } catch (error) {
       Logger.error(error);
       return res

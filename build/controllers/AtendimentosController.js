@@ -88,9 +88,7 @@ class AtendimentoController {
             try {
                 const atendimento = yield AtendimentoRepository_1.default.createAtendimento(atendimentoObj);
                 logger_1.default.info(messages_1.default.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE);
-                return res
-                    .status(201)
-                    .json({
+                return res.status(201).json({
                     success: true,
                     msg: messages_1.default.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_CREATE,
                     data: atendimento,

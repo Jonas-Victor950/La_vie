@@ -9,6 +9,7 @@ const PacientesController_1 = __importDefault(require("./controllers/PacientesCo
 const PsicologoController_1 = __importDefault(require("./controllers/PsicologoController"));
 const AtendimentosController_1 = __importDefault(require("./controllers/AtendimentosController"));
 const AuthController_1 = __importDefault(require("./controllers/AuthController"));
+const DashboardController_1 = __importDefault(require("./controllers/DashboardController"));
 // Imports Middlewares
 const auth_1 = __importDefault(require("./middlewares/auth"));
 // Imports Validations
@@ -40,4 +41,10 @@ router.get("/atendimentos", AtendimentosController_1.default.allAtendimentos);
 router.get("/atendimentos/:id", param_id_1.default, AtendimentosController_1.default.getOne);
 router.post("/atendimentos", create_3.default, auth_1.default, AtendimentosController_1.default.create);
 // End of Routes Atendimentos
+// Start of Routes Dashboard
+router.get("/dashboard/numero-pacientes", DashboardController_1.default.countPacientes);
+router.get("/dashboard/numero-psicologos", DashboardController_1.default.countPsicologos);
+router.get("/dashboard/numero-atendimentos", DashboardController_1.default.countAtendimentos);
+router.get("/dashboard/media-atendimentos", DashboardController_1.default.averageAtendimentos);
+// End of Routes Dashboard
 exports.default = router;
