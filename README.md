@@ -4,5 +4,5 @@ Projeto Gama Academy: Criação de banco de dados SQL, apresentação do diagram
 
 ### 📋 Documentação
 
-Documentação para consumo da API disponibilizada no PostMan pelo link: https://documenter.getpostman.com/view/23966107/2s847LNXaC
+Documentação para consumo da API disponibilizada no PostMan pelo link: https://documenter.getpostman.com/view/24169249/2s8YmSrLGm
 
