@@ -46,6 +46,14 @@ class AtendimentoRepository {
       }
     );
   }
+
+  deleteAtendimento(atendimentoId: number): Promise<any> {
+    return Atendimento.destroy({
+      where: {
+        atendimento_id: atendimentoId,
+      },
+    });
+  }
 }
 
 export default new AtendimentoRepository();

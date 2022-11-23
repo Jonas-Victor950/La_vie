@@ -123,18 +123,54 @@ class AtendimentoController {
           msg: MESSAGE.ERROR.ATENDIMENTOS.ATENDIMENTO_NOT_FOUND,
         });
       } else {
-        const updatedAtendimento = await AtendimentoRepository.updateAtendimento(
-          atendimentoId,
-          atendimentoObj
-        );
+        const updatedAtendimento =
+          await AtendimentoRepository.updateAtendimento(
+            atendimentoId,
+            atendimentoObj
+          );
         Logger.info(MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_UPDATE);
+        return res.status(200).json({
+          success: true,
+          msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_UPDATE,
+          data: atendimentoObj,
+        });
+      }
+    } catch (error) {
+      Logger.error(error);
+      return res
+        .status(500)
+        .json({ success: false, msg: MESSAGE.ERROR.ERROR_CATCH });
+    }
+  }
+
+  static async delete(req: Request, res: Response) {
+    try {
+      if (!req.params.id || isNaN(parseInt(req.params.id))) {
+        Logger.error(MESSAGE.ERROR.NOT_VALID_ID);
         return res
-          .status(200)
-          .json({
-            success: true,
-            msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_UPDATE,
-            data: atendimentoObj,
-          });
+          .status(500)
+          .json({ success: false, msg: MESSAGE.ERROR.NOT_VALID_ID });
+      }
+
+      const atendimentoId: number = parseInt(req.params.id);
+      const atendimento = await AtendimentoRepository.getOneAtendimento(
+        atendimentoId
+      );
+
+      if (!atendimento) {
+        Logger.error(MESSAGE.ERROR.ATENDIMENTOS.ATENDIMENTO_NOT_FOUND);
+        return res.status(500).json({
+          success: false,
+          msg: MESSAGE.ERROR.ATENDIMENTOS.ATENDIMENTO_NOT_FOUND,
+        });
+      } else {
+        await AtendimentoRepository.deleteAtendimento(atendimentoId);
+
+        Logger.info(MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_DELETE);
+        return res.status(200).json({
+          success: true,
+          msg: MESSAGE.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_DELETE,
+        });
       }
     } catch (error) {
       Logger.error(error);

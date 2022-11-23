@@ -59,6 +59,7 @@ router.put(
   auth,
   AtendimentoController.update
 );
+router.delete("/atendimentos/:id", auth, AtendimentoController.delete);
 // End of Routes Atendimentos
 
 // Start of Routes Dashboard
