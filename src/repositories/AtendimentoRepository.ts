@@ -27,6 +27,25 @@ class AtendimentoRepository {
       observacoes: dados.observacoes,
     });
   }
+
+  updateAtendimento(
+    atendimentoId: number,
+    dados: AtendimentoInterface
+  ): Promise<any> {
+    return Atendimento.update(
+      {
+        psicologo_id: dados.psicologo_id,
+        paciente_id: dados.paciente_id,
+        data_atendimento: dados.data_atendimento,
+        observacoes: dados.observacoes,
+      },
+      {
+        where: {
+          atendimento_id: atendimentoId,
+        },
+      }
+    );
+  }
 }
 
 export default new AtendimentoRepository();

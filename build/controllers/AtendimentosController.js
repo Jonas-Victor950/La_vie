@@ -102,5 +102,51 @@ class AtendimentoController {
             }
         });
     }
+    static update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { paciente_id, data_atendimento, observacoes } = req.body;
+            const login_id = req.auth.psicologo_id;
+            const atendimentoObj = {
+                psicologo_id: login_id,
+                paciente_id: paciente_id,
+                data_atendimento: data_atendimento,
+                observacoes: observacoes,
+            };
+            try {
+                if (!req.params.id || isNaN(parseInt(req.params.id))) {
+                    logger_1.default.error(messages_1.default.ERROR.NOT_VALID_ID);
+                    return res
+                        .status(500)
+                        .json({ success: false, msg: messages_1.default.ERROR.NOT_VALID_ID });
+                }
+                const atendimentoId = parseInt(req.params.id);
+                const atendimento = yield AtendimentoRepository_1.default.getOneAtendimento(atendimentoId);
+                if (!atendimento) {
+                    logger_1.default.error(messages_1.default.ERROR.ATENDIMENTOS.ATENDIMENTO_NOT_FOUND);
+                    return res.status(500).json({
+                        success: false,
+                        msg: messages_1.default.ERROR.ATENDIMENTOS.ATENDIMENTO_NOT_FOUND,
+                    });
+                }
+                else {
+                    const updatedAtendimento = yield AtendimentoRepository_1.default.updateAtendimento(atendimentoId, atendimentoObj);
+                    logger_1.default.info(messages_1.default.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_UPDATE);
+                    return res
+                        .status(200)
+                        .json({
+                        success: true,
+                        msg: messages_1.default.SUCCESS.ATENDIMENTOS.ATENDIMENTOS_UPDATE,
+                        data: atendimentoObj,
+                    });
+                }
+            }
+            catch (error) {
+                logger_1.default.error(error);
+                return res
+                    .status(500)
+                    .json({ success: false, msg: messages_1.default.ERROR.ERROR_CATCH });
+            }
+        });
+    }
 }
 exports.default = AtendimentoController;

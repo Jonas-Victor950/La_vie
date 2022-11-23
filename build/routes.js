@@ -20,6 +20,7 @@ const update_2 = __importDefault(require("./validations/pacientes/update"));
 const create_3 = __importDefault(require("./validations/atendimentos/create"));
 const login_1 = __importDefault(require("./validations/auth/login"));
 const param_id_1 = __importDefault(require("./validations/param_id"));
+const update_3 = __importDefault(require("./validations/atendimentos/update"));
 const router = express_1.default.Router();
 // Start of Routes Psicologos
 router.get("/psicologos", PsicologoController_1.default.allPsicologos);
@@ -40,6 +41,7 @@ router.post("/login", login_1.default, AuthController_1.default.login);
 router.get("/atendimentos", AtendimentosController_1.default.allAtendimentos);
 router.get("/atendimentos/:id", param_id_1.default, AtendimentosController_1.default.getOne);
 router.post("/atendimentos", create_3.default, auth_1.default, AtendimentosController_1.default.create);
+router.put("/atendimentos/:id", update_3.default, auth_1.default, AtendimentosController_1.default.update);
 // End of Routes Atendimentos
 // Start of Routes Dashboard
 router.get("/dashboard/numero-pacientes", DashboardController_1.default.countPacientes);

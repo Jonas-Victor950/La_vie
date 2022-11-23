@@ -25,5 +25,17 @@ class AtendimentoRepository {
             observacoes: dados.observacoes,
         });
     }
+    updateAtendimento(atendimentoId, dados) {
+        return Index_1.Atendimento.update({
+            psicologo_id: dados.psicologo_id,
+            paciente_id: dados.paciente_id,
+            data_atendimento: dados.data_atendimento,
+            observacoes: dados.observacoes,
+        }, {
+            where: {
+                atendimento_id: atendimentoId,
+            },
+        });
+    }
 }
 exports.default = new AtendimentoRepository();

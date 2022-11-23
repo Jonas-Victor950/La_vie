@@ -1,3 +1,5 @@
 node_modules
 .env
 logs
+jest.config.js
+babel.config.js

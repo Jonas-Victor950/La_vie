@@ -35,6 +35,8 @@ const MESSAGE = {
     ATENDIMENTOS: {
       ATENDIMENTOS_CREATE: "✔️ Atendimento criado com sucesso!",
       ATENDIMENTOS_FIND: "✔️ Atendimento(s) encontrados com sucesso!",
+      ATENDIMENTOS_DELETE: "✔️ Atendimento excluído com sucesso!",
+      ATENDIMENTOS_UPDATE: "✔️ Atendimento atualizado com sucesso!",
     },
     SERVER: "Servidor rodando na porta 3000",
     DB: "Banco dados conectado!",

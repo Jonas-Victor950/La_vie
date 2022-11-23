@@ -18,6 +18,7 @@ import validateUpdatePaciente from "./validations/pacientes/update";
 import validateCreateAtendimento from "./validations/atendimentos/create";
 import ValidateLogin from "./validations/auth/login";
 import validateParamId from "./validations/param_id";
+import validateUpdateAtendimento from "./validations/atendimentos/update";
 
 const router = express.Router();
 
@@ -51,6 +52,12 @@ router.post(
   validateCreateAtendimento,
   auth,
   AtendimentoController.create
+);
+router.put(
+  "/atendimentos/:id",
+  validateUpdateAtendimento,
+  auth,
+  AtendimentoController.update
 );
 // End of Routes Atendimentos
 
